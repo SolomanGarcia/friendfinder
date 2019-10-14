@@ -180,7 +180,7 @@
                 <div class="modal-body">
 
                     <p id="friend-name"></p>
-                    <img id="friend-image" src="" style ="max-width: 350px;"/>
+                    <img id="friend-image" src="" style="max-width: 350px;" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -192,31 +192,53 @@
 <script type="text/javascript">
     $("#submit").on("click", function (event) {
         event.preventDefault();
-        var newFriend = {
-            name: $("#name").val().trim(),
-            photo: $("#photo").val().trim(),
-            scores: [
-                $("#question1").val(),
-                $("#question2").val(),
-                $("#question3").val(),
-                $("#question4").val(),
-                $("#question5").val(),
-                $("#question6").val(),
-                $("#question7").val(),
-                $("#question8").val(),
-                $("#question9").val(),
-                $("#question10").val()
-            ]
-        };
-        $.post("/api/friends", newFriend,
-            function (bestFriend) {
-                if (bestFriend) {
-                    $("#friend-name").text(bestFriend.name)
-                    $("#friend-image").attr("src", bestFriend.photo)
-                    $('#myModal').modal('show')
 
+        function newForm() {
+
+            var completeForm = true;
+            $(".form-control").each(function () {
+                if ($(this).val() === "") {
+                    completeForm = false;
                 }
-            })
+            });
+            $(".select").each(function () {
+                if ($(this).val() === "") {
+                    completeForm = false;
+                }
+            });
+            return completeForm;
+        }
+
+        if (newForm() == true) {
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                scores: [
+                    $("#question1").val(),
+                    $("#question2").val(),
+                    $("#question3").val(),
+                    $("#question4").val(),
+                    $("#question5").val(),
+                    $("#question6").val(),
+                    $("#question7").val(),
+                    $("#question8").val(),
+                    $("#question9").val(),
+                    $("#question10").val()
+                ]
+            };
+            $.post("/api/friends", newFriend,
+                function (bestFriend) {
+                    if (bestFriend) {
+                        $("#friend-name").text(bestFriend.name)
+                        $("#friend-image").attr("src", bestFriend.photo)
+                        $('#myModal').modal('show')
+
+                    }
+
+                })
+        } else {
+            alert("Please complete all fields. Thank you.")
+        }
     })
 </script>
 
