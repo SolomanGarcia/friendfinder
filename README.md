@@ -23,7 +23,7 @@ Once cloned, cd into the repository and install the necessary dependencies by ru
 ````
 $ npm install
 ````
-
+ 
 You can then start the app locally by running: 
 ````
 $ node server.js
