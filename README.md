@@ -4,7 +4,7 @@ Friend Finder is an app that uses a survey to match you with a new friend.
 
 ## [Try it out](https://shrouded-plateau-67870.herokuapp.com/)
 
-![image](./friend.png)
+![image](../friend.png)
 
 ## Installing
 
